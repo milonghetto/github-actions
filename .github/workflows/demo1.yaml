@@ -3,13 +3,21 @@ on:
     pull_request:
         types:
             - opened
-    
+        branches:
+            - main
+
+    push:
+        branches:
+            - main
+        paths-ignore:
+            - '.github/workflows/*'
+
     workflow_dispatch:
 
 jobs:
     deploy:
         runs-on: ubuntu-latest
-        
+
         steps:
             - name: Output event data
               run: echo "${{ toJSON(github.event) }}"
